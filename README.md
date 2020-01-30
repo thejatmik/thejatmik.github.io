@@ -20,3 +20,6 @@ Extra
 * Click -> to move item to next container.
 * Click <- to move item to previous container.
 * Double click trash icon to remove item (once removed, there is no restore function)
+
+This app uses LocalStorage to save available item to your browser storage.
+*Best chance you won't lose your items as long as you use the same browser :+1:*
