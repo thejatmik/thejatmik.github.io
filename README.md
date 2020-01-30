@@ -1,5 +1,5 @@
 # thejatmik.github.io
-> Presenting A "ToDo List" Application
+> Presenting A simple "ToDo List" application. with JS, HTML, and CSS.
 
 ## Description
 Main input text field
