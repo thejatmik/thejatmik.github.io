@@ -65,6 +65,9 @@ body {
     opacity: 0.8; /* Firefox */
 }
 
+div {
+    color: black;
+}
 div[id$="Content"] {
     display: flex;
     min-width: 40vw;
