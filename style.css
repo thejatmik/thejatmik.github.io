@@ -1,0 +1,123 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Barlow Condensed', Helvetica, sans-serif;
+}
+
+body {
+    background: linear-gradient(-45deg, #ff8ba7, #ffc6c7, #faeee7, #c3f0ca);
+    background-size: 400%;
+    animation-name: rotate;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-play-state: paused;
+}
+@keyframes rotate {
+    0% {
+        background-position: 0% 0%;
+    }
+    20% {
+        background-position: 0% 100%;
+    }
+    40% {
+        background-position: 100% 100%;
+    }
+    60% {
+        background-position: 100% 100%;
+    }
+    80% {
+        background-position: 100% 0%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+/* 
+{background: linear-gradient(-45deg, #eef9bf, #a7e9af, #75b79e, #6a8caf);}
+{background: linear-gradient(-45deg, #fddb3a, #d5c455, #ede59a, #f6f4e6);}
+{background: linear-gradient(-45deg, #ff896b, #e8d4b4, #ebe6e6, #f3f3f3);}
+{background: linear-gradient(-45deg, #ff8ba7, #ffc6c7, #faeee7, #c3f0ca);} 
+*/
+
+#input-tbox {
+    margin: 10px;
+    width: 500px;
+    padding: 20px;
+    border-radius: 20px;
+    color: black;
+    font-weight: 700;
+    font-family: 'Manjari', sans-serif;
+    font-size: 24px;
+    text-align: center;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: 0.1s;
+}
+#input-tbox:focus {
+    transform: scale(1.3);
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: black;
+    opacity: 0.8; /* Firefox */
+}
+
+div[id$="Content"] {
+    display: flex;
+    min-width: 40vw;
+    max-width: 80vw;
+    margin: auto;
+    text-align: left;
+}
+
+div[id$="board"] {
+    border-radius: 10px;
+    margin: 2px 30px;
+    display: inline-block;
+    min-height: 400px;
+    width: 33%;
+    padding: 25px;
+    transition: 0.1s;
+}
+
+/* div[id$="board"]:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+} */
+div[id^="todo"]:hover {
+    /* padding: 4px; */
+    background-color: rgba(255, 105, 45, 0.29);
+    transform: scale(1.1);
+    transition: 0.1s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+div[id^="ongo"]:hover {
+    padding: 4px;
+    background-color: rgba(255, 221, 67, 0.29);
+    transform: scale(1.1);
+    transition: 0.1s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+div[id^="comp"]:hover {
+    padding: 4px;
+    background-color: rgba(118, 255, 55, 0.29);
+    transform: scale(1.1);
+    transition: 0.1s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+input:focus {
+    outline: none;
+}
+textarea:focus {
+    outline: none;
+    resize: vertical;
+}
+
+/* mandatory lele content */
+#lele {
+    height: 80px;
+    border-radius: 85px;
+}
