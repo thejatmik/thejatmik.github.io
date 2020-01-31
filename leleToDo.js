@@ -8,6 +8,7 @@ input.addEventListener('keyup', function(event) {
         event.preventDefault();
         //function to append value to list;
         this.additem();
+        this.value = "";
     }
 });
 input.additem = function () {
@@ -204,7 +205,7 @@ class MakeTextList {
 
     }
 
-};
+}
 // DISPLAY!
 let categ = ['todo', 'ongo', 'comp'];
 function loadLele() {
@@ -219,7 +220,9 @@ function loadLele() {
 }
 function clearLele() {
     for (let i=0; i<categ.length; i++) {
-        let item = document.getElementById(categ[i]+'-container')
+        let item = document.getElementById(''+categ[i]+'-container')
+        // if (!item) continue;
+        // console.log(categ[i]+'-container');
         while (item.firstChild) {
             item.removeChild(item.firstChild);
         }
@@ -252,3 +255,4 @@ var rotateA = function() {
 }
 setInterval(rotateA, 1000);
 // lele.style.display = 'none';
+// document.body.onload = loadLele();
