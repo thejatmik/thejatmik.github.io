@@ -50,7 +50,6 @@ if (typeof(Storage) !== "undefined") {
     // Code for localStorage
     if (!window.localStorage.getItem('leleTodo')) leleList = JSON.parse(window.localStorage.getItem(leleKey));
 };
-console.log(leleList);
 if (!leleList) leleList = [];
 leleList.nextCat = function(itemId) {
     let focused = this[0];
@@ -213,7 +212,6 @@ var loadLele = function() {
     if (typeof(Storage) !== "undefined") {
         // Code for localStorage
         window.localStorage.setItem(leleKey, JSON.stringify(leleList));
-        // console.log("Lele");
     };
     clearLele();
     printLele();
@@ -222,14 +220,12 @@ function clearLele() {
     for (let i=0; i<categ.length; i++) {
         let item = document.getElementById(''+categ[i]+'-container')
         // if (!item) continue;
-        // console.log(categ[i]+'-container');
         while (item.firstChild) {
             item.removeChild(item.firstChild);
         };
     };
 };
 function printLele() {
-    console.log("print");
     for (let i=0; i<leleList.length; i++) {
         if (leleList[i]) {
             new MakeTextList(leleList[i].id,leleList[i].text, leleList[i].cat).postToContainer();
@@ -250,7 +246,6 @@ lele.style.transform = 'rotate(10deg)';
 lele.style.transition = '0.1s';
 lele.onclick = function() {pauseAnimation()};
 let rotateA = function() {
-    // console.log(lele.style.transform);
     if (lele.style.transform === 'rotate(10deg)') lele.style.transform = 'rotate(-10deg)';
     else lele.style.transform = 'rotate(10deg)';
 };
