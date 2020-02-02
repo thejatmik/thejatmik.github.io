@@ -9,7 +9,7 @@ input.addEventListener('keyup', function(event) {
         //function to append value to list;
         this.additem();
         this.value = "";
-    }
+    };
 });
 input.additem = function () {
     if (this.value === "") return;
@@ -17,7 +17,7 @@ input.additem = function () {
     for (let i=0; i<leleList.length; i++) {
         if (!leleList[i]) continue;
         if (leleList[i].id>lastItem) lastItem=leleList[i].id;
-    }
+    };
     lastItem++;
     let added = false;
     for (let i=0; i<leleList.length; i++) {
@@ -26,18 +26,18 @@ input.additem = function () {
                 id: lastItem,
                 cat: "todo",
                 text: this.value+""
-            }
+            };
             added = true;
             break;
-        }
-    }
+        };
+    };
     if (!added) {
         leleList.push({
             id: lastItem,
             cat: "todo",
             text: this.value+""
         });
-    }
+    };
     this.value = "";
     loadLele();
 };
@@ -49,7 +49,8 @@ let leleList;
 if (typeof(Storage) !== "undefined") {
     // Code for localStorage
     if (!window.localStorage.getItem('leleTodo')) leleList = JSON.parse(window.localStorage.getItem(leleKey));
-}
+};
+console.log(leleList);
 if (!leleList) leleList = [];
 leleList.nextCat = function(itemId) {
     let focused = this[0];
@@ -58,8 +59,8 @@ leleList.nextCat = function(itemId) {
         if (this[i].id === Number(itemId.substr(4))) {
             focused = this[i];
             break;
-        }
-    }
+        };
+    };
     if (focused.cat == "todo") focused.cat = "ongo";
     else if (focused.cat == "ongo") focused.cat = "comp";
     loadLele();
@@ -71,12 +72,12 @@ leleList.prevCat = function(itemId) {
         if (this[i].id === Number(itemId.substr(4))) {
             focused = this[i];
             break;
-        }
-    }
+        };
+    };
     if (focused.cat == "ongo") focused.cat = "todo";
     else if (focused.cat == "comp") focused.cat = "ongo";
     loadLele();
-}
+};
 leleList.removeMe = function(itemId) {
     let index = 0;
     for (let i=0; i<this.length; i++) {
@@ -84,8 +85,8 @@ leleList.removeMe = function(itemId) {
         if (this[i].id === Number(itemId.substr(4))) {
             index = i;
             break;
-        }
-    }
+        };
+    };
     this[index]=undefined;
     loadLele();
 };
@@ -96,8 +97,8 @@ leleList.changeText = function(itemId, text) {
         if (this[i].id === Number(itemId.substr(4))) {
             focused = this[i];
             break;
-        }
-    }
+        };
+    };
     focused.text = text;
     loadLele();
 };
@@ -109,11 +110,11 @@ class MakeTextList {
         this.category = _category;
         this.text = _text;
         this.tag = _tag;
-    }
+    };
     
     get id() {
         return this.category+this.itemId;
-    }
+    };
     get content() {
         //make item div
         let a = document.createElement(this.tag)
@@ -131,26 +132,26 @@ class MakeTextList {
         a.appendChild(this.tbox);
         a.appendChild(this.trashBin);
         return a;
-    }
+    };
     get arrowLeft() {
         let a = document.createElement('span');
         a.innerHTML = '<i class="fas fa-arrow-left fa-lg"></i>';
         a.onclick = function() {leleList.prevCat(this.parentNode.id)};
         return a;
-    }
+    };
     get arrowRight() {
         let a = document.createElement('span');
         a.innerHTML = '<i class="fas fa-arrow-right fa-lg"></i>';
         a.transform = 'scale(2)';
         a.onclick = function() {leleList.nextCat(this.parentNode.id)};
         return a;
-    }
+    };
     get checkbox() {
         let a = document.createElement('input');
         a.type = 'checkbox';
         a.onclick = function() {leleList.nextCat(this.parentNode.id)};
         return a;
-    }
+    };
     get tbox() {
         // let a = document.createElement('input');
         // a.type = 'text';
@@ -177,47 +178,46 @@ class MakeTextList {
             leleList.changeText(this.parentNode.id, a.value);
         });
         return a;
-    }
+    };
     get trashBin() {
         let a = document.createElement('span');
         a.innerHTML = '<i class="fas fa-trash-alt"></i>';
         a.ondblclick = function() {leleList.removeMe(this.parentNode.id)};
         a.style.alignItems = 'right';
         return a;
-    }
+    };
     get xMark() {
         let a = document.createElement('span');
-        a.appendChild(document.createTextNode(' REMOVE '))
+        a.appendChild(document.createTextNode(' REMOVE '));
         a.style.fontSize = '13px';
         a.style.textAlign = 'right';
         a.style.cursor = 'pointer';
         a.ondblclick = function() {leleList.removeMe(this.parentNode.id)};
         return a;
-    }
+    };
+};
 
-    postToContainer = function () {
-        //find div container
-        let container = document.getElementById(this.category+'-container');
-        if (container) {
-            container.appendChild(this.content);
-            return container;
-        }
+MakeTextList.prototype.postToContainer = function() {
+    //find div container
+    let container = document.getElementById(this.category+'-container');
+    if (container) {
+        container.appendChild(this.content);
+        return container;
+    };
 
-    }
-
-}
+};
 // DISPLAY!
 let categ = ['todo', 'ongo', 'comp'];
-function loadLele() {
+var loadLele = function() {
     //save list
     if (typeof(Storage) !== "undefined") {
         // Code for localStorage
         window.localStorage.setItem(leleKey, JSON.stringify(leleList));
         // console.log("Lele");
-    }
+    };
     clearLele();
     printLele();
-}
+};
 function clearLele() {
     for (let i=0; i<categ.length; i++) {
         let item = document.getElementById(''+categ[i]+'-container')
@@ -225,16 +225,17 @@ function clearLele() {
         // console.log(categ[i]+'-container');
         while (item.firstChild) {
             item.removeChild(item.firstChild);
-        }
-    }
-}
+        };
+    };
+};
 function printLele() {
+    console.log("print");
     for (let i=0; i<leleList.length; i++) {
         if (leleList[i]) {
             new MakeTextList(leleList[i].id,leleList[i].text, leleList[i].cat).postToContainer();
-        }
-    }
-}
+        };
+    };
+};
 
 //mandatory lelegoyang
 function pauseAnimation() {
@@ -242,17 +243,17 @@ function pauseAnimation() {
         document.body.style.animationPlayState = 'running';
     } else {
         document.body.style.animationPlayState = 'paused';
-    }
-}
+    };
+};
 let lele = document.getElementById("lele");
 lele.style.transform = 'rotate(10deg)';
 lele.style.transition = '0.1s';
-lele.onclick = function() {pauseAnimation()}
-var rotateA = function() {
+lele.onclick = function() {pauseAnimation()};
+let rotateA = function() {
     // console.log(lele.style.transform);
     if (lele.style.transform === 'rotate(10deg)') lele.style.transform = 'rotate(-10deg)';
     else lele.style.transform = 'rotate(10deg)';
-}
+};
 setInterval(rotateA, 1000);
 // lele.style.display = 'none';
 // document.body.onload = loadLele();
